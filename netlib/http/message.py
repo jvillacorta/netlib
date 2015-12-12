@@ -66,7 +66,7 @@ class Message(object):
     @content.setter
     def content(self, content):
         self.data.content = content
-        if isinstance(content, bytes):
+        if self.headers.get("content-length") is None and isinstance(content, bytes):
             self.headers["content-length"] = str(len(content))
 
     @property
